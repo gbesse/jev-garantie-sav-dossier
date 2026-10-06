@@ -1,0 +1,68 @@
+{
+  "input": {
+    "id": "jev-garantie-sav-dossier-demo",
+    "purchase": {
+      "docId": "a",
+      "date": "2025-11-03",
+      "productId": "DEMO-ORDINATEUR",
+      "professionalSeller": true,
+      "consumerBuyer": true
+    },
+    "failure": {
+      "docId": "b",
+      "date": "2026-09-01",
+      "productId": "DEMO-ORDINATEUR",
+      "description": "L’ordinateur ne démarre plus."
+    },
+    "refusal": {
+      "docId": "c",
+      "reason": "Le SAV invoque une infiltration de liquide.",
+      "proof": {
+        "docId": "d",
+        "description": "Diagnostic atelier : traces de liquide et corrosion sur la carte mère."
+      }
+    }
+  },
+  "documents": [
+    {
+      "id": "a",
+      "file": "pieces/a.txt",
+      "source": {
+        "uri": "fixture:a",
+        "date": "2026-10-06",
+        "kind": "synthetique",
+        "licence": "CC0-1.0"
+      }
+    },
+    {
+      "id": "b",
+      "file": "pieces/b.txt",
+      "source": {
+        "uri": "fixture:b",
+        "date": "2026-10-06",
+        "kind": "synthetique",
+        "licence": "CC0-1.0"
+      }
+    },
+    {
+      "id": "c",
+      "file": "pieces/c.txt",
+      "source": {
+        "uri": "fixture:c",
+        "date": "2026-10-06",
+        "kind": "synthetique",
+        "licence": "CC0-1.0"
+      }
+    },
+    {
+      "id": "d",
+      "file": "pieces/d.txt",
+      "source": {
+        "uri": "fixture:d",
+        "date": "2026-10-06",
+        "kind": "synthetique",
+        "licence": "CC0-1.0"
+      }
+    }
+  ]
+}

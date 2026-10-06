@@ -1,0 +1,80 @@
+import { analyze, toHtml, type Dossier, type Report } from "../src/index.mjs";
+import { createJevClient } from "../src/jev.mjs";
+import { importManifest } from "../src/adapters.mjs";
+const dossier: Dossier = {
+  id: "jev-garantie-sav-dossier-demo",
+  purchase: {
+    docId: "a",
+    date: "2025-11-03",
+    productId: "DEMO-ORDINATEUR",
+    professionalSeller: true,
+    consumerBuyer: true,
+  },
+  failure: {
+    docId: "b",
+    date: "2026-09-01",
+    productId: "DEMO-ORDINATEUR",
+    description: "L’ordinateur ne démarre plus.",
+  },
+  refusal: {
+    docId: "c",
+    reason: "Le SAV invoque une infiltration de liquide.",
+    proof: {
+      docId: "d",
+      description:
+        "Diagnostic atelier : traces de liquide et corrosion sur la carte mère.",
+    },
+  },
+  documents: [
+    {
+      id: "a",
+      text: "2025-11-03\nDEMO-ORDINATEUR\nTrue",
+      source: {
+        uri: "fixture:a",
+        date: "2026-10-06",
+        kind: "synthetique",
+        licence: "CC0-1.0",
+      },
+    },
+    {
+      id: "b",
+      text: "2026-09-01\nDEMO-ORDINATEUR\nL’ordinateur ne démarre plus.",
+      source: {
+        uri: "fixture:b",
+        date: "2026-10-06",
+        kind: "synthetique",
+        licence: "CC0-1.0",
+      },
+    },
+    {
+      id: "c",
+      text: "Le SAV invoque une infiltration de liquide.",
+      source: {
+        uri: "fixture:c",
+        date: "2026-10-06",
+        kind: "synthetique",
+        licence: "CC0-1.0",
+      },
+    },
+    {
+      id: "d",
+      text: "Diagnostic atelier : traces de liquide et corrosion sur la carte mère.",
+      source: {
+        uri: "fixture:d",
+        date: "2026-10-06",
+        kind: "synthetique",
+        licence: "CC0-1.0",
+      },
+    },
+  ],
+};
+const report: Report = await analyze(dossier, {
+  mode: "jev",
+  provider: createJevClient({ apiKey: "test-de-type" }),
+});
+const html: string = toHtml(report);
+void html;
+const imported: Dossier = await importManifest("examples/manifest.json");
+void imported;
+// @ts-expect-error Les champs métier sont obligatoires.
+await analyze({ id: "vide", documents: [] });

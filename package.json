@@ -1,0 +1,66 @@
+{
+  "name": "@gbesse/jev-garantie-sav-dossier",
+  "version": "0.1.0",
+  "description": "Organise achat, panne et refus avec chronologie et justificatifs manquants.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.mts",
+      "import": "./src/index.mjs"
+    },
+    "./jev": {
+      "types": "./src/jev.d.mts",
+      "import": "./src/jev.mjs"
+    },
+    "./adapters": {
+      "types": "./src/adapters.d.mts",
+      "import": "./src/adapters.mjs"
+    }
+  },
+  "bin": {
+    "jev-garantie-sav-dossier": "./bin/jev-garantie-sav-dossier.mjs"
+  },
+  "scripts": {
+    "test": "node --test",
+    "demo": "node examples/demo.mjs",
+    "demo:limite": "node examples/cas-limite.mjs",
+    "demo:revue": "node examples/revue-humaine.mjs",
+    "demo:import": "node examples/import.mjs",
+    "serve": "node scripts/serve.mjs",
+    "serve:live": "node --env-file=.env scripts/serve.mjs --live",
+    "bench": "node scripts/bench.mjs",
+    "bench:live": "node --env-file=.env scripts/bench.mjs --live",
+    "typecheck": "tsc --noEmit --strict --target ES2022 --module NodeNext docs/public-api-types.mts",
+    "build:demo": "node scripts/build-demo.mjs",
+    "check": "npm run typecheck && npm test && npm run demo && npm run demo:import && npm run bench && npm run build:demo"
+  },
+  "dependencies": {
+    "pdfjs-dist": "6.4.299"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gbesse/jev-garantie-sav-dossier.git"
+  },
+  "files": [
+    "src",
+    "bin",
+    "examples",
+    "corpus",
+    "scripts",
+    "web",
+    "docs"
+  ],
+  "keywords": [
+    "jev",
+    "france",
+    "preuves",
+    "open-source"
+  ]
+}
